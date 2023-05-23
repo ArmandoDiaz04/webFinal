@@ -1,8 +1,26 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Bienvenida";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container-fluid col-9">
+    <div class="image-container d-flex align-items-center justify-content-center">
+        <img src="src/img/img.jpg" id="ladingImage" class="img-fluid" alt="...">
+        <div class="input-overlay">
+            <div class="row justify-content-center align-items-center h-100">
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Buscar trabajo..." />
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">Buscar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row container-fluid justify-content-center mt-4">
+    <div class="col-md-5">
+        <p class="text-center">¿Deseas ver los empleos agregados recientemente?</p>
+        <button type="button" class="btn btn-primary col rounded-4 text-center">ver empleos</button>
+    </div>
 </div>

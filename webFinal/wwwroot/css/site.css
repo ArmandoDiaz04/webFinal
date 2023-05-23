@@ -4,7 +4,7 @@ html {
 
 @media (min-width: 768px) {
   html {
-    font-size: 16px;
+    font-size: 20px;
   }
 }
 
@@ -15,4 +15,44 @@ html {
 
 body {
   margin-bottom: 60px;
+}
+
+.btnPerson {
+    border-radius: 100px;
+}
+
+#ladingImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0px 0px 200px 200px;
+}
+
+.image-container {
+    position: relative;
+}
+
+.input-overlay {
+    position: absolute;
+    top: 25%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+#logImage {
+    max-width: 610px;
+    max-height: 50%;
+}
+
+#logImagen {
+    filter: brightness(.8);
+}
+
+#blur {
+    width: 100%;
+    height: auto;
+    background: rgba( 0, 0, 0, 0.30 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 1.5px );
+    -webkit-backdrop-filter: blur(2px);
 }
