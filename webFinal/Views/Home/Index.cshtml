@@ -1,16 +1,16 @@
 ﻿@{
     ViewData["Title"] = "Bienvenida";
 }
-<div class="container-fluid col-9">
-    <div class="image-container d-flex align-items-center justify-content-center">
-        <img src="src/img/img.jpg" id="ladingImage" class="img-fluid" alt="...">
+<div class="container-fluid col-12">
+    <div class="image-container d-flex align-items-center justify-content-center" >
+        <img src="src/img/fondo.jpg" id="ladingImage" class="img-fluid" style="max-height:500px" alt="...">
         <div class="input-overlay">
             <div class="row justify-content-center align-items-center h-100">
                 <div class="col-md-8">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Buscar trabajo..." />
+                        <input type="text" class="form-control p-3 rounded-end rounded-pill" placeholder="Buscar trabajo..." />
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">Buscar</button>
+                            <button class="btn btn-primary rounded-pill rounded-start" type="button">Buscar</button>
                         </div>
                     </div>
                 </div>
@@ -21,6 +21,6 @@
 <div class="row container-fluid justify-content-center mt-4">
     <div class="col-md-5">
         <p class="text-center">¿Deseas ver los empleos agregados recientemente?</p>
-        <button type="button" class="btn btn-primary col rounded-4 text-center">ver empleos</button>
+        <button type="button" class="btn btn-primary p-3 rounded-4 col  text-center" id="btnVer">ver empleos</button>
     </div>
 </div>

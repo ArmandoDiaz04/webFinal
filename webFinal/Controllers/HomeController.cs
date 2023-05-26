@@ -15,6 +15,7 @@ namespace webFinal.Controllers
 
         public IActionResult Index()
         {
+
             return View();
         }
 
