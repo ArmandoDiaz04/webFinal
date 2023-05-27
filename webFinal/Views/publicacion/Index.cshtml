@@ -4,30 +4,78 @@
     ViewData["Title"] = "Lista de Publicaciones";
 }
 
-<h1>@ViewData["Title"]</h1>
-
-<div class="row">
-    <div class="col-md-6 offset-md-3">
-        <form method="get" action="@Url.Action("Index", "publicacion")">
-            <div class="form-group">
-                <input type="text" name="filtroTitulo" class="form-control" placeholder="Filtrar por título" />
+<div class="container-fluid row col-12 mt-4">
+    <!-- filtros -->
+    <div class="col-3 row justify-content-center align-items-center pt-4" style="background-color: rgba(217, 217, 217, 0.3);">
+        <h5 class="text-center">Filtros</h5>
+        <form asp-action="CrearEquipos">
+            <div class="form-group mb-4">
+                <div class="col">
+                    @Html.Label("lblUbicacion", "Ubicación")
+                </div>
+                <div class="col">
+                    @Html.DropDownList("valorSalario", ViewData["listaSalario"] as SelectList, "Seleccione un Salario", new { @class = "form-control" })
+                </div>
             </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Filtrar</button>
+            <div class="form-group mb-4">
+                <div class="col">
+                    @Html.Label("lblSalario", "Pretensión salarial")
+                </div>
+                <div class="col">
+                    @Html.DropDownList("valorSalario", ViewData["listaSalario"] as SelectList, "Seleccione un Salario", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group mb-4">
+                <div class="col">
+                    @Html.Label("lblExperiencia", "Experiencia")
+                </div>
+                <div class="col">
+                    @Html.DropDownList("valorSalario", ViewData["listaSalario"] as SelectList, "Seleccione un Salario", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group mb-4">
+                <div class="col">
+                    @Html.Label("lblEmpresa", "Empresa")
+                </div>
+                <div class="col">
+                    @Html.DropDownList("valorSalario", ViewData["listaSalario"] as SelectList, "Seleccione un Salario", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group mb-4">
+                <div class="col">
+                    @Html.Label("lblContrato", "Tipo de contrato")
+                </div>
+                <div class="col">
+                    @Html.DropDownList("valorSalario", ViewData["listaSalario"] as SelectList, "Seleccione un Salario", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row mb-4">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-4">
+                    <input type="submit" class="btn btn-primary" value="Filtrar" />
+                </div>
             </div>
         </form>
     </div>
+    <div class="col-9 m-2">
+        <!-- insersion de cards con busquedas de trabajo -->
+        <div class="row">
+            @foreach (var publicacion in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@publicacion.Titulo</h5>
+                            <p class="card-text">@publicacion.Descripcion</p>
+                            <p class="card-text">@publicacion.NombreEmpresa</p> <!-- Mostrar el nombre de la empresa -->
+                            <p class="card-text"><small class="text-muted">Fecha de publicación: @publicacion.FechaPublicacion.ToString("dd/MM/yyyy")</small></p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </div>
 
-<div class="card-deck">
-    @foreach (var publicacion in Model)
-    {
-        <div class="card col-3">
-            <div class="card-body">
-                <h5 class="card-title">@publicacion.Titulo</h5>
-                <p class="card-text">@publicacion.Descripcion</p>
-                <p class="card-text"><small class="text-muted">@publicacion.FechaPublicacion.ToString("dd/MM/yyyy")</small></p>
-            </div>
-        </div>
-    }
-</div>
+
+

@@ -23,6 +23,8 @@ namespace webFinal.Models
 
         [ForeignKey("IdEmpresa")]
         public Empresa Empresa { get; set; }
+
+        public string NombreEmpresa { get; set; }
     }
 
 
