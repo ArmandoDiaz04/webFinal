@@ -14,9 +14,10 @@ namespace webFinal.Controllers
             _empleosDBContext =  empleosDBContext1;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string filtroTitulo)
         {
             List<Publicacion> publi = _empleosDBContext.Publicaciones
+                .Where(p => string.IsNullOrEmpty(filtroTitulo) || p.Titulo.Contains(filtroTitulo))
                 .Select(p => new Publicacion
                 {
                     IdPublicacion = p.IdPublicacion,
@@ -29,6 +30,7 @@ namespace webFinal.Controllers
 
             return View(publi);
         }
+
 
     }
 
