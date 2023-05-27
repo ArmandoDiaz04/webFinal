@@ -1,0 +1,22 @@
+﻿@model List<Publicacion>
+
+@{
+    ViewData["Title"] = "Lista de Publicaciones";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="card-deck">
+    @foreach (var publicacion in Model)
+    {
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@publicacion.Titulo</h5>
+                <p class="card-text">@publicacion.Descripcion</p>
+                <p class="card-text"><small class="text-muted">@publicacion.FechaPublicacion.ToString("dd/MM/yyyy")</small></p>
+            </div>
+        </div>
+    }
+</div>
+
+
