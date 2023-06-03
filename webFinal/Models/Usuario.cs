@@ -42,6 +42,6 @@ namespace webFinal.Models
         public int idrol { get; set; }
 
         public string contrasenia { get; set; }
-        public List<ValoracionEmpresa> ValoracionesEmpresas { get; set; }
+      //  public List<ValoracionEmpresa> ValoracionesEmpresas { get; set; }
     }
 }
