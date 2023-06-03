@@ -31,6 +31,14 @@ namespace webFinal.Models
         [StringLength(100)]
         public string Pais { get; set; }
 
+        [Required]
+        [StringLength(100)]
+        public string? Email { get; set; }
+
+        public string? contrasenia { get; set; }
+
+        public int? idrol { get; set; }
+
         public List<Publicacion> Publicaciones { get; set; }
         public List<ValoracionEmpresa> ValoracionesEmpresas { get; set; }
     }

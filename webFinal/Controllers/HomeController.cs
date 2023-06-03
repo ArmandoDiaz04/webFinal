@@ -28,7 +28,6 @@ namespace webFinal.Controllers
             };
 
             List<Publicacion> publicaciones = _dbContext.Publicaciones
-    .Include(p => p.Empresa)
     .OrderByDescending(p => p.FechaPublicacion)
     .Take(3)
     .ToList();
