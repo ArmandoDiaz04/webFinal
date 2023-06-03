@@ -21,9 +21,8 @@ namespace webFinal.Controllers
             if (user != null)
             {
                 // Guardar estado de inicio de sesión en una variable de sesión
-                HttpContext.Session.SetString("UserId", user.IdEmpresa.ToString());
-                HttpContext.Session.SetString("RolId", user.idrol.ToString());
-
+                HttpContext.Session.SetString("UserIdEmpresa", user.IdEmpresa.ToString());
+                HttpContext.Session.SetString("RolIdEmpresa", user.idrol.ToString());               
                 // Redirigir a la página de inicio después de iniciar sesión
                 return RedirectToAction("Index", "Home");
             }
@@ -44,7 +43,6 @@ namespace webFinal.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-
             return View();
         }
     }
