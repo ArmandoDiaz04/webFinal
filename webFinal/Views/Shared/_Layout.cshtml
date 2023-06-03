@@ -46,8 +46,9 @@
                     else
                     {
                         string userId = Context.Session.GetString("UserId");
+                        @*string IdEmpresa = Context.Session.GetString("");*@
 
-                        @if (Context.Session.GetString("RolId").Equals("1"))
+                        if (Context.Session.GetString("RolId").Equals("1"))
                         {
                             <li class="nav-item">
                                 <a class="navbar-brand" asp-controller="Usuarios" asp-action="Details" asp-route-id="@userId">
