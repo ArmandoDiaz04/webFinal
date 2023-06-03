@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container text-light mt-5 mb-5 d-flex align-items-center justify-content-center">
+
+    <div class="card text-bg-dark" id="imgDiv">
+        <img src="src/img/login.png" id="logImagen" class="card-img" alt="..." >
+        <div class="card-img-overlay d-flex justify-content-center align-items-center row">
+
+            <form class="col-8" asp-controller="LoginEmpresa" asp-action="Index" method="post">
+                <!-- Email input -->
+                <div class="form-outline">
+                    <label class="form-label" for="form2Example1">User</label>
+                    <input type="email" id="form2Example1" class="form-control" name="Email" />
+                </div>
+
+                <!-- Password input -->
+                <div class="form-outline">
+                    <label class="form-label" for="form2Example2">Password</label>
+                    <input type="password" id="form2Example2" class="form-control" name="Password" />
+                </div>
+
+                <!-- 2 column grid layout for inline styling -->
+                <div class="row mb-4">
+                    <div class="col">
+                        <!-- Simple link -->
+                        <a href="#!">Forgot password?</a>
+                    </div>
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+            </form>
+
+            <div class="text-center  col-12" id="blur">
+                <p>Not a member? <a href="#!">Register</a></p>
+                <p>or sign up with:</p>
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-facebook-f"></i>
+                </button>
+
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-google"></i>
+                </button>
+
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-twitter"></i>
+                </button>
+
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-github"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
