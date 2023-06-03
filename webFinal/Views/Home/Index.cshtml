@@ -1,13 +1,84 @@
-﻿@{
+﻿@using webFinal.Controllers
+@model HomeALL
+@{
     ViewData["Title"] = "Bienvenida";
 }
+<style>
+     button {
+    min-height: 50px;
+    width: 200px;
+    border-color: transparent;
+    background-color: #3f51b5;
+    color: #fff;
+    font-size: 30px;
+    padding-bottom: 6px;
+    border-width: 0;
+  }
+    .esta{
+        margin-top:100px;
+        text-align: center;
+        color: white;
+    }
+    .about{
+        background-color:#16213E;
+        color: white;
+        padding: 100px;
+    }
+    .cuerpo {
+        background-color: #2196f3;
+        min-height: 600px; /* Reducir la altura del carrusel */
+        font-family: "helvetica neue";
+        background: url(src/img/fondo1.png, #2196f3;
+        background: url(src/img/fondo1.png),
+        -webkit-gradient(linear, right top, left top, from(#2196f3), to(#009688));
+        background: url(src/img/fondo1.png),
+            linear-gradient(to left, #0431B4, #009688);
+    }
+
+    .image-container {
+        position: relative;
+        max-width: 100%;
+        max-height: 100%;
+        margin: 0 auto;
+    }
+      .contenedor {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 0;
+        border-radius: 5px;
+        background: white;
+        box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+      }
+   
+
+    /* Ajustar altura fija para las imágenes del carrusel */
+
+    .caja{
+      display: grid;
+      margin: 20px;
+      width: 40%;
+      min-height: 200px;
+      place-items: center;
+      box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
+      border-radius: 5px;
+      backdrop-filter: blur(20px);
+      background-color: rgba(236, 240, 241, 0.2);
+    }
+</style>
+
+
+<div class="cuerpo">
+    
 <div class="container-fluid col-12">
     <div class="image-container d-flex align-items-center justify-content-center">
-        <img src="src/img/fondo.jpg" id="ladingImage" class="img-fluid" style="max-height:500px" alt="...">
+        <img src="src/img/programador-canada.jpg_554688468.webp" id="ladingImage" class="img-fluid" style="max-height:500px" alt="...">
         <div class="input-overlay">
             <div class="row justify-content-center align-items-center h-100">
 
                 <div class="col-md-6 ">
+                    <div  style="text-align: center; color: #BFC9CA;" >
+                    <h1>¿Estas buscando trabajo?</h1>
+                    </div>
                     <form method="get" action="@Url.Action("Index", "publicacion")">
                         <div class="input-group">
                             <input type="text" name="filtroTitulo" class="form-control p-3 rounded-end rounded-pill" placeholder="Filtrar por título" />
@@ -23,11 +94,76 @@
         </div>
     </div>
 </div>
+
+
 <div class="row container-fluid justify-content-center mt-4">
     <div class="col-md-5">
         <p class="text-center">¿Deseas ver los empleos agregados recientemente?</p>
-        @Html.ActionLink("Ver empleos", "Index", "publicacion", null, new { @class = "btn btn-primary p-3 rounded-4 col  text-center" })
+        @Html.ActionLink("Ver empleos", "Index", "publicacion", null, new { @class = "btn btn-primary p-3 rounded-4 col text-center" })
+    </div>
+</div>
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+        </div>
+    </div>
+    <div class="row justify-content-md-center"  style="color:white" id="estadisticas-container ">
+          <div class="col-12 esta">
+               <h3 >Estadísticas</h3>
+          </div> 
 
+        <div class="estadisticas-block col-3 caja">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+              <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
+            </svg>
+            <p>Número de Usuarios: @Model.Estadisticas.NumeroUsuarios</p>
+        </div>
+        <div class="estadisticas-block col-3 caja">
+             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-building-check" viewBox="0 0 16 16">
+                  <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514Z"/>
+                  <path d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6.5a.5.5 0 0 1-1 0V1H3v14h3v-2.5a.5.5 0 0 1 .5-.5H8v4H3a1 1 0 0 1-1-1V1Z"/>
+                  <path d="M4.5 2a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm-6 3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm-6 3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Z"/>
+                </svg>
+            <p>Número de Empresas: @Model.Estadisticas.NumeroEmpresas</p>
+        </div>
+        <div class="estadisticas-block col-3 caja">
+           <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-file-earmark-post" viewBox="0 0 16 16">
+              <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+              <path d="M4 6.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-7zm0-3a.5.5 0 0 1 .5-.5H7a.5.5 0 0 1 0 1H4.5a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+            <p>Número de Publicaciones: @Model.Estadisticas.NumeroPublicaciones</p>
+        </div>
+    </div>
+</div>
+<div class="about">
+    <h2>Acerca de nosostros</h2>
+    <p>
+        ¡Bienvenido a nuestra página de búsqueda de empleo! Aquí encontrarás una plataforma dedicada a ayudarte a encontrar oportunidades laborales acordes a tus habilidades y experiencia. Nuestro objetivo es facilitar el proceso de búsqueda y conexión entre empleadores y candidatos, brindando una experiencia intuitiva y eficiente.<br />
+Explora nuestra amplia base de datos de ofertas laborales en diversos sectores y ubicaciones geográficas. Ya sea que estés buscando un trabajo a tiempo completo, medio tiempo o incluso proyectos freelance, nuestra página te ofrece una gran variedad de opciones para que encuentres el empleo que se ajuste a tus necesidades y objetivos profesionales.
+    </p>
+
+</div >
+    <div class="esta">
+    <h3>Publicaciones Recientes</h3>
+
+    </div>
+    <div class="row ">
+        @foreach (var publicacion in Model.Publicaciones)
+        {
+            <div class="col-md-4 mb-4 contenedor">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@publicacion.Titulo</h5>
+                        <p class="card-text">@publicacion.Descripcion</p>
+                        @*<p class="card-text">@publicacion.Empresa.Nombre</p>*@
+                        <p class="card-text"><small class="text-muted">Fecha de publicación: @publicacion.FechaPublicacion.ToString("dd/MM/yyyy")</small></p>
+                        <button>
+                            ver publicacion
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 </div>

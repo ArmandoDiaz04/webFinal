@@ -24,6 +24,7 @@ namespace webFinal.Models
         [ForeignKey("IdEmpresa")]
         public Empresa Empresa { get; set; }
 
+<<<<<<< HEAD
         public string NombreEmpresa { get; set; }
         public double Salario { get; set; }
 
@@ -35,6 +36,9 @@ namespace webFinal.Models
 
         [StringLength(100)]
         public string Localizacion { get; set; }
+=======
+        //public string NombreEmpresa { get; set; }
+>>>>>>> ae35178512352d70a6a8af475651c7748fa52623
     }
 
 
