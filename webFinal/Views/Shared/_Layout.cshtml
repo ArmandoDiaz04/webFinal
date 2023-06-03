@@ -43,9 +43,9 @@
                     }
                     else
                     {
-                        string userId = Context.Session.GetString("RolId");
+                        string userId = Context.Session.GetString("UserId");
 
-                        @if (userId.Equals("1"))
+                        @if (Context.Session.GetString("RolId").Equals("1"))
                         {
                             <li class="nav-item">
                                 <a class="navbar-brand" asp-controller="Usuarios" asp-action="Details" asp-route-id="@userId">
@@ -54,7 +54,7 @@
                                 </a>
                             </li>
                         }
-                        else if (userId.Equals("0"))
+                        else if (Context.Session.GetString("RolId").Equals("0"))
                         {
                             <li class="nav-item">
                                 <a class="navbar-brand" asp-controller="Empresas" asp-action="Details" asp-route-id="@userId">
