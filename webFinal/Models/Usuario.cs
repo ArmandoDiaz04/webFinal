@@ -40,6 +40,6 @@ namespace webFinal.Models
         [StringLength(100)]
         public string Pais { get; set; }
 
-        public List<ValoracionEmpresa> ValoracionesEmpresas { get; set; }
+        //public List<ValoracionEmpresa> ValoracionesEmpresas { get; set; }
     }
 }
