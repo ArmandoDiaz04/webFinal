@@ -35,10 +35,35 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav mx-3">
-                    <li class="nav-item">
-                        <a class="nav-link text-light rounded-4 btn btn-primary pl-3 px-3" asp-area="" asp-controller="Login" asp-action="Index">Iniciar sesion</a>
-                    </li>
+                    @if (Context.Session.GetString("UserId") == null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-light rounded-4 btn btn-primary pl-3 px-3" asp-area="" asp-controller="Login" asp-action="Index">Iniciar sesión</a>
+                        </li>
+                    }
+                    else
+                    {
+                        @if (Context.Session.GetString("RolId").Equals("1"))
+                        {
+                            <li class="nav-item">
+                                <a class="navbar-brand" asp-controller="Usuarios" asp-action="Details">
+                                    <!--empresa-->
+                                    <img src="/src/img/usuario.png" alt="Logo" width="50" height="50" class="d-inline-block align-top">
+                                </a>
+                            </li>
+                        }
+                        else if (Context.Session.GetString("RolId").Equals("0"))
+                        {
+                            <li class="nav-item">
+                                <a class="navbar-brand" asp-controller="Empresas" asp-action="Details">
+                                    <!--empresa-->
+                                    <img src="/src/img/usuario.png" alt="Logo" width="50" height="50" class="d-inline-block align-top">
+                                </a>
+                            </li>
+                        }
+                    }
                 </ul>
+
             </div>
         </nav>
     </header>

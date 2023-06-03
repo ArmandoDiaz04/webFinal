@@ -39,7 +39,9 @@ namespace webFinal.Models
 
         [StringLength(100)]
         public string Pais { get; set; }
+        public int idrol { get; set; }
 
+        public string contrasenia { get; set; }
         public List<ValoracionEmpresa> ValoracionesEmpresas { get; set; }
     }
 }
