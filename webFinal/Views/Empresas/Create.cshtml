@@ -1,0 +1,94 @@
+﻿@model webFinal.Models.Empresa
+
+@{
+    ViewData["Title"] = "Registrar Empresa";
+}
+
+<div class="row justify-content-center" style="background-image: url('/src/img/fondo-add.jpg'); color: #F5EFE7;">
+    <div class="col-md-6">
+        <div class="card" style="background-color:#4F709C">
+            <div class="card-body">
+        <form asp-action="CrearEmpresa">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Nombre)
+                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Nombre)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NumeroEmpleados)
+                @Html.TextBoxFor(model => model.NumeroEmpleados, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.NumeroEmpleados)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Rubro)
+                @Html.TextBoxFor(model => model.Rubro, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Rubro)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Telefono)
+                @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Telefono)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Direccion)
+                @Html.TextBoxFor(model => model.Direccion, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Direccion)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Ciudad)
+                @Html.TextBoxFor(model => model.Ciudad, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Ciudad)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Estado)
+                @Html.TextBoxFor(model => model.Estado, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Estado)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Pais)
+                @Html.TextBoxFor(model => model.Pais, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Pais)
+            </div>
+
+            <div class="form-group row mb-4">
+                <div class="offset-2 col-sm-4">
+                    <input type="submit" class="btn btn-primary" value="Guardar" />
+                </div>
+            </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email)
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.contrasenia)
+                        @Html.TextBoxFor(model => model.contrasenia, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.contrasenia)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.idrol)
+                        @Html.TextBoxFor(model => model.idrol, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.idrol)
+                    </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -9,10 +9,10 @@
 <br />
 <br />
 <div class="container text-center">
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col">
-            <div class="card" style="width: 10rem;">
-                <img src="/src/img/usuario.png" class="card-img-top" alt="...">
+            <div class="card" style="width: 18rem;">
+                <img src="/src/img/usuario.png" class="card-img-top"  alt="...">
                 <div class="card-body">
                     <a class="col-sm-2">
                        ¡Bienvenido!
@@ -81,16 +81,18 @@
                     <dd class="col-sm-10">
                         @Html.DisplayFor(model => model.Pais)
                     </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.contrasenia)
+                    </dt>
+                    <dd class="col-sm-10">
+                        <a>********</a>
+                    </dd>
                 </dl>
                 <div>
-                    <a asp-action="Edit" asp-route-id="@Model.IdUsuario">Edit</a> |
-                    <a asp-action="Delete" asp-route-id="@Model?.IdUsuario">Eliminar</a>
-                    <a asp-action="Index">Back to List</a>
+                    <input type="submit" asp-action="Edit" asp-route-id="@Model.IdUsuario" value="Editar Información" class="btn btn-primary" />
+                    <input type="submit" asp-action="Delete" asp-route-id="@Model?.IdUsuario" value="Eliminar Cuenta" class="btn btn-primary" />
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-

@@ -9,78 +9,85 @@ using webFinal.Models;
 
 namespace webFinal.Controllers
 {
-    public class UsuariosController : Controller
+    public class EmpresasController : Controller
     {
         private readonly empleosDBContext _context;
 
-        public UsuariosController(empleosDBContext context)
+        public IActionResult CrearEmpresa(Empresa empresa)
         {
-            _context = context;
-        }
-        public IActionResult CrearUsuario(Usuario usuario)
-        {
-            _context.Add(usuario);
+            _context.Add(empresa);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        // GET: Usuarios
+        public EmpresasController(empleosDBContext context)
+        {
+            _context = context;
+        }
+
+        // GET: Empresas
         public async Task<IActionResult> Index()
         {
-              return _context.Usuarios != null ? 
-                          View(await _context.Usuarios.ToListAsync()) :
-                          Problem("Entity set 'empleosDBContext.Usuarios'  is null.");
+              return _context.Empresas != null ? 
+                          View(await _context.Empresas.ToListAsync()) :
+                          Problem("Entity set 'empleosDBContext.Empresas'  is null.");
         }
 
-        // GET: Usuarios/Details/5
+        // GET: Empresas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Usuarios == null)
+            if (id == null || _context.Empresas == null)
             {
                 return NotFound();
             }
 
-            var usuario = await _context.Usuarios
-                .FirstOrDefaultAsync(m => m.IdUsuario == id);
-            if (usuario == null)
+            var empresa = await _context.Empresas
+                .FirstOrDefaultAsync(m => m.IdEmpresa == id);
+            if (empresa == null)
             {
                 return NotFound();
             }
 
-            return View(usuario);
+            return View(empresa);
         }
 
-        // GET: Usuarios/Create
+        // GET: Empresas/Create
         public IActionResult Create()
         {
             return View();
         }
 
-
-        // GET: Usuarios/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.Usuarios == null)
-            {
-                return NotFound();
-            }
-
-            var usuario = await _context.Usuarios.FindAsync(id);
-            if (usuario == null)
-            {
-                return NotFound();
-            }
-            return View(usuario);
-        }
-
-        // POST: Usuarios/Edit/5
+        // POST: Empresas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdUsuario,Nombre,Apellido,Email,InformacionLaboral,Telefono,Direccion,Ciudad,Estado,Pais,idrol,contrasenia")] Usuario usuario)
+        
+
+        // GET: Empresas/Edit/5
+        public async Task<IActionResult> Edit(int? id)
         {
-            if (id != usuario.IdUsuario)
+            if (id == null || _context.Empresas == null)
+            {
+                return NotFound();
+            }
+
+            var empresa = await _context.Empresas.FindAsync(id);
+            if (empresa == null)
+            {
+                return NotFound();
+            }
+            return View(empresa);
+        }
+
+        // POST: Empresas/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("IdEmpresa,Nombre,NumeroEmpleados,Rubro,Telefono,Direccion,Ciudad,Estado,Pais")] Empresa empresa)
+        {
+            if (id != empresa.IdEmpresa)
             {
                 return NotFound();
             }
@@ -89,12 +96,12 @@ namespace webFinal.Controllers
             {
                 try
                 {
-                    _context.Update(usuario);
+                    _context.Update(empresa);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UsuarioExists(usuario.IdUsuario))
+                    if (!EmpresaExists(empresa.IdEmpresa))
                     {
                         return NotFound();
                     }
@@ -105,49 +112,49 @@ namespace webFinal.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(usuario);
+            return View(empresa);
         }
 
-        // GET: Usuarios/Delete/5
+        // GET: Empresas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Usuarios == null)
+            if (id == null || _context.Empresas == null)
             {
                 return NotFound();
             }
 
-            var usuario = await _context.Usuarios
-                .FirstOrDefaultAsync(m => m.IdUsuario == id);
-            if (usuario == null)
+            var empresa = await _context.Empresas
+                .FirstOrDefaultAsync(m => m.IdEmpresa == id);
+            if (empresa == null)
             {
                 return NotFound();
             }
 
-            return View(usuario);
+            return View(empresa);
         }
 
-        // POST: Usuarios/Delete/5
+        // POST: Empresas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Usuarios == null)
+            if (_context.Empresas == null)
             {
-                return Problem("Entity set 'empleosDBContext.Usuarios'  is null.");
+                return Problem("Entity set 'empleosDBContext.Empresas'  is null.");
             }
-            var usuario = await _context.Usuarios.FindAsync(id);
-            if (usuario != null)
+            var empresa = await _context.Empresas.FindAsync(id);
+            if (empresa != null)
             {
-                _context.Usuarios.Remove(usuario);
+                _context.Empresas.Remove(empresa);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UsuarioExists(int id)
+        private bool EmpresaExists(int id)
         {
-          return (_context.Usuarios?.Any(e => e.IdUsuario == id)).GetValueOrDefault();
+          return (_context.Empresas?.Any(e => e.IdEmpresa == id)).GetValueOrDefault();
         }
     }
 }
