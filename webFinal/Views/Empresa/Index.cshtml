@@ -1,0 +1,69 @@
+﻿@model webFinal.Models.Empresa
+
+@{
+    ViewData["Title"] = "Crear Empresa";
+}
+
+<h2>Crear Empresa</h2>
+
+<form asp-action="CrearEmpresa">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nombre)
+        @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Nombre)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NumeroEmpleados)
+        @Html.TextBoxFor(model => model.NumeroEmpleados, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.NumeroEmpleados)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Rubro)
+        @Html.TextBoxFor(model => model.Rubro, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Rubro)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Telefono)
+        @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Telefono)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Direccion)
+        @Html.TextBoxFor(model => model.Direccion, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Direccion)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Ciudad)
+        @Html.TextBoxFor(model => model.Ciudad, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Ciudad)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Estado)
+        @Html.TextBoxFor(model => model.Estado, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Estado)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Pais)
+        @Html.TextBoxFor(model => model.Pais, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Pais)
+    </div>
+
+    <div class="form-group row mb-4">
+        <div class="offset-2 col-sm-4">
+            <input type="submit" class="btn btn-primary" value="guardar" />
+        </div>
+    </div>
+</form>
+
+    
+
+
+
+
