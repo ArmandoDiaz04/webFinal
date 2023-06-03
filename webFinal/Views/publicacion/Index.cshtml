@@ -4,75 +4,84 @@
     ViewData["Title"] = "Lista de Publicaciones";
 }
 
-<div class="container-fluid row col-12 mt-4">
-    <!-- filtros -->
-    <div class="col-3 row justify-content-center align-items-center pt-4" style="background-color: rgba(217, 217, 217, 0.3);">
-        <h5 class="text-center">Filtros</h5>
-        <form asp-action="CrearEquipos">
-            <div class="form-group mb-4">
-                <div class="col">
-                    @Html.Label("lblUbicacion", "Ubicación")
-                </div>
-                <div class="col">
-                    @Html.DropDownList("valorSalario", ViewData["listaSalario"] as SelectList, "Seleccione un Salario", new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="form-group mb-4">
-                <div class="col">
-                    @Html.Label("lblSalario", "Pretensión salarial")
-                </div>
-                <div class="col">
-                    @Html.DropDownList("valorSalario", ViewData["listaSalario"] as SelectList, "Seleccione un Salario", new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="form-group mb-4">
-                <div class="col">
-                    @Html.Label("lblExperiencia", "Experiencia")
-                </div>
-                <div class="col">
-                    @Html.DropDownList("valorSalario", ViewData["listaSalario"] as SelectList, "Seleccione un Salario", new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="form-group mb-4">
-                <div class="col">
-                    @Html.Label("lblEmpresa", "Empresa")
-                </div>
-                <div class="col">
-                    @Html.DropDownList("valorSalario", ViewData["listaSalario"] as SelectList, "Seleccione un Salario", new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="form-group mb-4">
-                <div class="col">
-                    @Html.Label("lblContrato", "Tipo de contrato")
-                </div>
-                <div class="col">
-                    @Html.DropDownList("valorSalario", ViewData["listaSalario"] as SelectList, "Seleccione un Salario", new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="form-group row mb-4">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-4">
-                    <input type="submit" class="btn btn-primary" value="Filtrar" />
-                </div>
-            </div>
-        </form>
-    </div>
-    <div class="col-9 m-2">
-        <!-- insersion de cards con busquedas de trabajo -->
-        <div class="row">
-            @foreach (var publicacion in Model)
-            {
-                <div class="col-md-3 mb-3" style="width: 23rem; max-height:30rem">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">@publicacion.Titulo</h5>
-                            <p class="card-text overflow-visible d-inline-block" style="width: 20rem; height:5rem">@publicacion.Descripcion</p>
-                            <p class="card-text">@publicacion.NombreEmpresa</p> <!-- Mostrar el nombre de la empresa -->
-                            <p class="card-text"><small class="text-muted">Fecha de publicación: @publicacion.FechaPublicacion.ToString("dd/MM/yyyy")</small></p>
-                        </div>
+
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <!-- Filtros -->
+        <div class="col-xxl-3 pt-4" style="background-color: rgba(217, 217, 217, 0.3);">
+            <h5 class="text-center">Filtros</h5>
+            <form asp-action="CrearEquipos">
+                <div class="form-group mb-4">
+                    <div class="col">
+                        @Html.Label("lblUbicacion", "Ubicación")
+                    </div>
+                    <div class="col">
+                        @Html.DropDownList("valorSalario", ViewData["listaSalario"] as SelectList, "Seleccione un Salario", new { @class = "form-control" })
                     </div>
                 </div>
-            }
+                <div class="form-group mb-4">
+                    <div class="col">
+                        @Html.Label("lblSalario", "Pretensión salarial")
+                    </div>
+                    <div class="col">
+                        @Html.DropDownList("valorSalario", ViewData["listaSalario"] as SelectList, "Seleccione un Salario", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group mb-4">
+                    <div class="col">
+                        @Html.Label("lblExperiencia", "Experiencia")
+                    </div>
+                    <div class="col">
+                        @Html.DropDownList("valorSalario", ViewData["listaSalario"] as SelectList, "Seleccione un Salario", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group mb-4">
+                    <div class="col">
+                        @Html.Label("lblEmpresa", "Empresa")
+                    </div>
+                    <div class="col">
+                        @Html.DropDownList("valorSalario", ViewData["listaSalario"] as SelectList, "Seleccione un Salario", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group mb-4">
+                    <div class="col">
+                        @Html.Label("lblContrato", "Tipo de contrato")
+                    </div>
+                    <div class="col">
+                        @Html.DropDownList("tipoContrato", ViewData["listaContrato"] as SelectList, "Seleccione un tipo de contrato", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group row mb-4">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-4">
+                        <input type="submit" class="btn btn-primary" value="Filtrar" />
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Publicaciones -->
+        <div class="col-md-9">
+            <div class="row">
+                @foreach (var publicacion in Model)
+                {
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="@Url.Action("DetallePublicacion", new { id = publicacion.IdPublicacion })" class="mr-2">@publicacion.Titulo</a>
+                                </h5>
+                                <p class="card-text overflow-visible d-inline-block" style="height: 5rem">@publicacion.Descripcion</p>
+                                <p class="card-text">@publicacion.NombreEmpresa</p>
+                                <p class="card-text"><small class="text-muted">Fecha de publicación: @publicacion.FechaPublicacion.ToString("dd/MM/yyyy")</small></p>
+                                <a href="@Url.Action("DetallePublicacion", new { id = publicacion.IdPublicacion })" class="btn btn-primary">Ver detalles</a>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
         </div>
     </div>
 </div>
