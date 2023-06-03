@@ -6,7 +6,7 @@
 <div class="container pt-2 mt-2 pb-3 rounded-3 pl-5 px-5" id="titPublicacion">
     <div class="card mt-2 text-center rounded-4">
         <div class="card-body rounded-4 bgp">
-           <h2>@Model.Titulo</h2> 
+            <h2>@Model.Titulo</h2>
         </div>
     </div>
     <div class="card mb-2 mt-5 rounded-4">
@@ -15,23 +15,33 @@
             <p class="card-text">@Model.Descripcion</p>
         </div>
     </div>
-    <div class="card mb-2 rounded-4">
-        <div class="card-body rounded-4 bgp">
-            <h5 class="card-title">Objetivo del puesto:</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        </div>
-    </div>
 
-    <div class="card mb-2 rounded-4">
-        <div class="card-body rounded-4 bgp">
-            <h5 class="card-title">Habilidades técnicas:</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        </div>
-    </div>
     <div class="card mb-2 rounded-4">
         <div class="card-body rounded-4 bgp">
             <h5 class="card-title">@Model.Empresa.Nombre</h5>
             <p class="card-text">@Model.Empresa.Rubro</p>
         </div>
+    </div>
+
+    <div class="text-center mt-3">
+        @if (Context.Session.GetString("UserId") == null)
+        {
+            <a class="text-light rounded-4 btn btn-primary text-center mt-3" asp-area="" asp-controller="Login" asp-action="Index">Iniciar sesión</a>
+        }
+        else
+        {
+            string userId = Context.Session.GetString("UserId");
+
+            @if (Context.Session.GetString("RolId").Equals("1"))
+            {
+                <form id="postulacionForm" asp-area="" asp-controller="Postulacion" asp-action="Crear" data-modal="#modalResultado">
+                    <input type="hidden" name="IdPublicacion" value="@Model.IdPublicacion" />
+                    <input type="hidden" name="IdEmpresa" value="@Model.IdEmpresa" />
+                    <input type="hidden" name="IdUsuario" value="@userId" />
+
+                    <button type="submit" class="text-light rounded-4 btn btn-primary text-center mt-3">Aplicar</button>
+                </form>
+            }
+        }
     </div>
 </div>

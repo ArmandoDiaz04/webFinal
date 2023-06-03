@@ -36,6 +36,7 @@
                         @Html.DropDownList("valorExperiencia", ViewData["listaExperiencia"] as SelectList, "Seleccione la experiencia", new { @class = "form-control" })
                     </div>
                 </div>
+
                 <div class="form-group mb-4">
                     <div class="col">
                         @Html.Label("lblEmpresa", "Empresa")
@@ -44,6 +45,8 @@
                         @Html.DropDownList("valorEmpresa", ViewData["listaEmpresa"] as SelectList, "Seleccione una empresa", new { @class = "form-control" })
                     </div>
                 </div>
+
+
                 <div class="form-group mb-4">
                     <div class="col">
                         @Html.Label("lblContrato", "Tipo de contrato")
@@ -73,7 +76,7 @@
                                     <a href="@Url.Action("DetallePublicacion", new { id = publicacion.IdPublicacion })" class="mr-2">@publicacion.Titulo</a>
                                 </h5>
                                 <p class="card-text overflow-visible d-inline-block" style="height: 5rem">@publicacion.Descripcion</p>
-                                <p class="card-text">@publicacion.Empresa.Nombre</p>
+                                <p class="card-text"><strong>@publicacion.Empresa.Nombre</strong></p>
                                 <p class="card-text"><small class="text-muted">Fecha de publicación: @publicacion.FechaPublicacion.ToString("dd/MM/yyyy")</small></p>
                                 <a href="@Url.Action("DetallePublicacion", new { id = publicacion.IdPublicacion })" class="btn btn-primary">Ver detalles</a>
 

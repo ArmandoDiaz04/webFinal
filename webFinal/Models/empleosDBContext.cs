@@ -13,6 +13,7 @@ namespace webFinal.Models
         public DbSet<Empresa> Empresas { get; set; }
         public DbSet<Publicacion> Publicaciones { get; set; }
         public DbSet<ValoracionEmpresa> ValoracionesEmpresas { get; set; }
+        public DbSet<Postulacion> postulaciones { get; set; }
     }
 
 }

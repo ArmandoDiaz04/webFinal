@@ -166,7 +166,8 @@ namespace webFinal.Controllers
                     lstTipoContrato.Add(filtro.tipo_contrato);
                 }                              
                
-            }foreach (var filtro in empresa)
+            }
+            foreach (var filtro in empresa)
             {
 
                 if (!filtro.Nombre.IsNullOrEmpty())
