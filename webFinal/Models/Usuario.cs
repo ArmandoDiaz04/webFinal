@@ -40,6 +40,11 @@ namespace webFinal.Models
         [StringLength(100)]
         public string Pais { get; set; }
 
+<<<<<<< Updated upstream
         //public List<ValoracionEmpresa> ValoracionesEmpresas { get; set; }
+=======
+       public string contrasenia { get; set; }
+      //  public List<ValoracionEmpresa> ValoracionesEmpresas { get; set; }
+>>>>>>> Stashed changes
     }
 }
