@@ -35,7 +35,7 @@ namespace webFinal.Controllers
                  Titulo = p.Titulo,
                  Descripcion = p.Descripcion,
                  FechaPublicacion = p.FechaPublicacion,
-                 NombreEmpresa = p.Empresa.Nombre  // Obtener el nombre de la empresa asociada
+               //  NombreEmpresa = p.Empresa.Nombre  // Obtener el nombre de la empresa asociada
              })
              .ToList();
 
