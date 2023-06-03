@@ -102,3 +102,39 @@ SELECT  * FROM Empresas
 
 DROP table Empresas
 DROP table Publicaciones
+
+USE [empleos]
+GO
+
+alter table Usuarios add idrol int;
+alter table Usuarios add contrasenia varchar(20);
+
+
+INSERT INTO Usuarios
+           ([Nombre]
+           ,[Apellido]
+           ,[Email]
+           ,[InformacionLaboral]
+           ,[Telefono]
+           ,[Direccion]
+           ,[Ciudad]
+           ,[Estado]
+           ,[Pais]
+           ,[idrol]
+           ,[contrasenia])
+     VALUES
+           ('Armando',
+             'Diaz',
+             'arma@gmail.com',
+             'desempleado',
+				'2223322',
+				'casa',
+           'santa ana',
+           'santa ana',
+            'el salvador',
+           0,
+			'123');
+
+	--		SELECT * FROM Usuarios
+
+	--		update Usuarios set contrasenia = '123'
