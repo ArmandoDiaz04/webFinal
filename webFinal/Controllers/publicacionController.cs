@@ -21,18 +21,31 @@ namespace webFinal.Controllers
             listados();
 
 
+           
             List<Publicacion> publi = _empleosDBContext.Publicaciones
-             .Where(p => string.IsNullOrEmpty(filtroTitulo) || p.Titulo.Contains(filtroTitulo))
-             .Select(p => new Publicacion
-             {
-                 IdPublicacion = p.IdPublicacion,
-                 IdEmpresa = p.IdEmpresa,
-                 Titulo = p.Titulo,
-                 Descripcion = p.Descripcion,
-                 FechaPublicacion = p.FechaPublicacion,
-               //  NombreEmpresa = p.Empresa.Nombre  // Obtener el nombre de la empresa asociada
-             })
-             .ToList();
+               .Join(_empleosDBContext.Empresas,
+                   p => p.IdEmpresa,
+                   e => e.IdEmpresa,
+                   (p, e) => new
+                   {
+                       Publicacion = p,
+                       Empresa = e
+                   })
+                 .Where(pe => string.IsNullOrEmpty(filtroTitulo) || pe.Publicacion.Titulo.Contains(filtroTitulo))
+               .Select(pe => new Publicacion
+               {
+                   IdPublicacion = pe.Publicacion.IdPublicacion,
+                   IdEmpresa = pe.Publicacion.IdEmpresa,
+                   Titulo = pe.Publicacion.Titulo,
+                   Descripcion = pe.Publicacion.Descripcion,
+                   FechaPublicacion = pe.Publicacion.FechaPublicacion,
+                   Empresa = new Empresa
+                   {
+                       IdEmpresa = pe.Empresa.IdEmpresa,
+                       Nombre = pe.Empresa.Nombre,
+                       Rubro = pe.Empresa.Rubro
+                   }
+               }).ToList();
 
             return View(publi);
         }
