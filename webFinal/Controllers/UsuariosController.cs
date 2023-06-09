@@ -21,7 +21,7 @@ namespace webFinal.Controllers
         {
             _context.Add(usuario);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("/Home/Index");
         }
 
         // GET: Usuarios
@@ -75,6 +75,7 @@ namespace webFinal.Controllers
             {
                 return NotFound();
             }
+
             return View(usuario);
         }
 
@@ -108,7 +109,8 @@ namespace webFinal.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details), new { id = usuario.IdUsuario });
+
             }
             return View(usuario);
         }
