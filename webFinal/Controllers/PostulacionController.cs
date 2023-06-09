@@ -21,7 +21,7 @@
         public IActionResult Consultar()
         {
             // Obtener todas las postulaciones y cargar los datos relacionados
-            var postulaciones = _dbContext.Postulaciones
+            var postulaciones = _dbContext.postulaciones
                 .Include(p => p.Usuario)
                 .Include(p => p.Empresa)
                 .Include(p => p.Publicacion)

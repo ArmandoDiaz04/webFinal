@@ -1,0 +1,49 @@
+﻿@model List<ValoracionEmpresa>
+
+@{
+    ViewData["Title"] = "Lista de valoraciones";
+}
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <!-- Filtros -->
+        <div class="col-3 pt-4" style="background-color: rgba(217, 217, 217, 0.3);">
+            <h5 class="text-center">Filtros</h5>
+            <form asp-action="Index">
+                <div class="form-group mb-4">
+                    <div class="col">
+                        @Html.DropDownList("valorEmpresa", ViewData["listaEmpresa"] as SelectList, "Seleccione una empresa", new { @class = "form-control" })
+
+                    </div>
+                </div>
+                <div class="form-group row mb-4">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-4">
+                        <input type="submit" class="btn btn-primary" value="Buscar" />
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Valoraciones -->
+        <div class="col-md-9">
+            <div class="row">
+                @foreach (var valoracion in Model)
+                {
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="@Url.Action("detalleValoracion", new { id = valoracion.IdValoracion })" class="mr-2">@valoracion.Empresa.Nombre</a>
+                                </h5>
+                                <p class="card-text overflow-visible d-inline-block" style="height: 5rem">@valoracion.Comentario</p>
+                                <p class="card-text">@valoracion.Empresa.Nombre</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
