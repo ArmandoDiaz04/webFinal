@@ -89,8 +89,10 @@
                     </dd>
                 </dl>
                 <div>
-                    <input type="submit" asp-action="Edit" asp-route-id="@Model.IdUsuario" value="Editar Información" class="btn btn-primary" />
-                    <input type="submit" asp-action="Delete" asp-route-id="@Model?.IdUsuario" value="Eliminar Cuenta" class="btn btn-primary" />
+
+                    <a asp-action="Edit" asp-route-id="@Model.IdUsuario">Editar Información</a>
+                    <a asp-action="Delete" asp-route-id="@Model?.IdUsuario">Eliminar Cuenta</a>
+                
                 </div>
             </div>
         </div>

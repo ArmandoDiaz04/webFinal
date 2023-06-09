@@ -30,7 +30,10 @@
                         @if (Context.Session.GetString("RolId").Equals("1"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link" style="color: #87CEEB" href="#">Buscar Trabajo</a>
+                                <a class="nav-link" style="color: #87CEEB"   asp-controller="Home" asp-action="Index" >Buscar Trabajo</a>
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link" style="color: #87CEEB" href="#">Mis Postulaciones</a>
                             </li>
                         }
                         else if (Context.Session.GetString("RolId").Equals("0"))
@@ -43,7 +46,7 @@
                     
                    
                     <li class="nav-item">
-                        <a class="nav-link" style="color: #87CEEB" href="recursos">Recursos</a>
+                        <a class="nav-link" style="color: #87CEEB" asp-controller="Recursos" asp-action="Index">Recursos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" style="color: #87CEEB" href="#">Valoraciones</a>
@@ -59,12 +62,12 @@
                     else
                     {
                         string userId = Context.Session.GetString("UserId");
-
+                        <!--usuarios-->
                         @if (Context.Session.GetString("RolId").Equals("1"))
                         {
                             <li class="nav-item">
                                 <a class="navbar-brand" asp-controller="Usuarios" asp-action="Details" asp-route-id="@userId">
-                                    <!--empresa-->
+                                    
                                     <img src="/src/img/usuario.png" alt="Logo" width="50" height="50" class="d-inline-block align-top">
                                 </a>
                             </li>
@@ -72,8 +75,9 @@
                         else if (Context.Session.GetString("RolId").Equals("0"))
                         {
                             <li class="nav-item">
+                                <!--Empresa-->
                                 <a class="navbar-brand" asp-controller="Empresas" asp-action="Details" asp-route-id="@userId">
-                                    <!--empresa-->
+                                  
                                     <img src="/src/img/usuario.png" alt="Logo" width="50" height="50" class="d-inline-block align-top">
                                 </a>
                             </li>
