@@ -1,5 +1,7 @@
-
+create database  empleos
+go
 use empleos
+go
 CREATE TABLE Usuarios (
     IdUsuario INT PRIMARY KEY,
     Nombre VARCHAR(100),
@@ -13,7 +15,7 @@ CREATE TABLE Usuarios (
     Pais VARCHAR(100),
     CONSTRAINT UQ_Usuarios_Email UNIQUE (Email)
 );
-
+go
 CREATE TABLE Empresas (
     IdEmpresa INT PRIMARY KEY,
     Nombre VARCHAR(100),
@@ -26,6 +28,7 @@ CREATE TABLE Empresas (
     Pais VARCHAR(100),
     CONSTRAINT UQ_Empresas_Nombre UNIQUE (Nombre)
 );
+go
 CREATE TABLE Publicaciones (
     IdPublicacion INT PRIMARY KEY,
     IdEmpresa INT,
@@ -34,6 +37,7 @@ CREATE TABLE Publicaciones (
     FechaPublicacion DATETIME,
     CONSTRAINT FK_Publicaciones_Empresas FOREIGN KEY (IdEmpresa) REFERENCES Empresas(IdEmpresa)
 );
+go
 CREATE TABLE ValoracionesEmpresas (
     IdValoracion INT PRIMARY KEY,
     IdEmpresa INT,
@@ -44,23 +48,34 @@ CREATE TABLE ValoracionesEmpresas (
     CONSTRAINT FK_ValoracionesEmpresas_Empresas FOREIGN KEY (IdEmpresa) REFERENCES Empresas(IdEmpresa),
     CONSTRAINT FK_ValoracionesEmpresas_Usuarios FOREIGN KEY (IdUsuario) REFERENCES Usuarios(IdUsuario)
 );
-
+go
+CREATE TABLE Postulaciones (
+    IdPostulacion INT IDENTITY(1,1) PRIMARY KEY,
+    IdUsuario INT,
+    IdEmpresa INT,
+    IdPublicacion INT,
+    FechaPostulacion DATETIME,
+    CONSTRAINT FK_Postulaciones_Usuarios FOREIGN KEY (IdUsuario) REFERENCES Usuarios(IdUsuario),
+    CONSTRAINT FK_Postulaciones_Empresas FOREIGN KEY (IdEmpresa) REFERENCES Empresas(IdEmpresa),
+    CONSTRAINT FK_Postulaciones_Publicaciones FOREIGN KEY (IdPublicacion) REFERENCES Publicaciones(IdPublicacion)
+);
+go
 INSERT INTO Usuarios (IdUsuario, Nombre, Apellido, Email, InformacionLaboral, Telefono, Direccion, Ciudad, Estado, Pais)
-VALUES (1, 'Juan', 'PÈrez', 'juan@example.com', 'Experiencia en desarrollo web', '1234567890', 'Calle Principal 123', 'Ciudad de MÈxico', 'Ciudad de MÈxico', 'MÈxico');
+VALUES (1, 'Juan', 'P√©rez', 'juan@example.com', 'Experiencia en desarrollo web', '1234567890', 'Calle Principal 123', 'Ciudad de M√©xico', 'Ciudad de M√©xico', 'M√©xico');
 
-
+og
 
 INSERT INTO Empresas (IdEmpresa, Nombre, NumeroEmpleados, Rubro, Telefono, Direccion, Ciudad, Estado, Pais)
-VALUES (1, 'Empresa XYZ', 100, 'TecnologÌa', '9876543210', 'Avenida Principal 456', 'Guadalajara', 'Jalisco', 'MÈxico');
-
+VALUES (1, 'Empresa XYZ', 100, 'Tecnolog√≠a', '9876543210', 'Avenida Principal 456', 'Guadalajara', 'Jalisco', 'M√©xico');
+go
 
 INSERT INTO Publicaciones (IdPublicacion, IdEmpresa, Titulo, Descripcion, FechaPublicacion)
 VALUES (1, 1, 'Desarrollador Web', 'Se busca desarrollador web con experiencia en HTML, CSS y JavaScript.', GETDATE());
-
+go
 
 INSERT INTO ValoracionesEmpresas (IdValoracion, IdEmpresa, IdUsuario, Comentario, Calificacion, FechaValoracion)
 VALUES (1, 1, 1, 'Empresa excelente, ambiente de trabajo agradable.', 5, GETDATE());
-
+go
 
 ---------------------------------------
 INSERT INTO Empresas (IdEmpresa, Nombre, NumeroEmpleados, Rubro, Telefono, Direccion, Ciudad, Estado, Pais)
@@ -71,15 +86,15 @@ VALUES (2, 2, 'Ingeniero de Software', 'Se solicita ingeniero de software con co
 GO
 
 INSERT INTO Publicaciones (IdPublicacion, IdEmpresa, Titulo, Descripcion, FechaPublicacion)
-VALUES (3, 1, 'DiseÒador Gr·fico', 'Empresa busca diseÒador gr·fico con experiencia en Adobe Photoshop e Illustrator.', GETDATE());
+VALUES (3, 1, 'Dise√±ador Gr√°fico', 'Empresa busca dise√±ador gr√°fico con experiencia en Adobe Photoshop e Illustrator.', GETDATE());
 GO
 
 INSERT INTO Publicaciones (IdPublicacion, IdEmpresa, Titulo, Descripcion, FechaPublicacion)
-VALUES (4, 2, 'Asistente Administrativo', 'Se necesita asistente administrativo con habilidades en gestiÛn de documentos y atenciÛn al cliente.', GETDATE());
+VALUES (4, 2, 'Asistente Administrativo', 'Se necesita asistente administrativo con habilidades en gesti√≥n de documentos y atenci√≥n al cliente.', GETDATE());
 GO
 
 INSERT INTO Publicaciones (IdPublicacion, IdEmpresa, Titulo, Descripcion, FechaPublicacion)
-VALUES (5, 1, 'Analista de Datos', 'Empresa de an·lisis de datos busca analista con conocimientos en SQL y Excel.', GETDATE());
+VALUES (5, 1, 'Analista de Datos', 'Empresa de an√°lisis de datos busca analista con conocimientos en SQL y Excel.', GETDATE());
 GO
 
 INSERT INTO Publicaciones (IdPublicacion, IdEmpresa, Titulo, Descripcion, FechaPublicacion)
@@ -87,21 +102,21 @@ VALUES (6, 1, 'Desarrollador Mobile', 'Se solicita desarrollador mobile con expe
 GO
 
 INSERT INTO Publicaciones (IdPublicacion, IdEmpresa, Titulo, Descripcion, FechaPublicacion)
-VALUES (7, 2, 'Contador P˙blico', 'Empresa contable busca contador con experiencia en auditorÌa financiera y declaraciÛn de impuestos.', GETDATE());
+VALUES (7, 2, 'Contador P√∫blico', 'Empresa contable busca contador con experiencia en auditor√≠a financiera y declaraci√≥n de impuestos.', GETDATE());
 GO
 
 INSERT INTO Publicaciones (IdPublicacion, IdEmpresa, Titulo, Descripcion, FechaPublicacion)
-VALUES (8, 1, 'TÈcnico de Soporte', 'Se necesita tÈcnico de soporte con conocimientos en redes y resoluciÛn de problemas de hardware.', GETDATE());
+VALUES (8, 1, 'T√©cnico de Soporte', 'Se necesita t√©cnico de soporte con conocimientos en redes y resoluci√≥n de problemas de hardware.', GETDATE());
 GO
 
 INSERT INTO Publicaciones (IdPublicacion, IdEmpresa, Titulo, Descripcion, FechaPublicacion)
 VALUES (9, 2, 'Instructor Fitness', 'Gimnasio busca instructor fitness con experiencia en entrenamiento funcional y clases grupales.', GETDATE());
 GO
 
-SELECT  * FROM Empresas
+--SELECT  * FROM Empresas
 
-DROP table Empresas
-DROP table Publicaciones
+--DROP table Empresas
+--DROP table Publicaciones
 
 USE [empleos]
 GO
