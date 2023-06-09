@@ -26,6 +26,7 @@
 
                     @if (Context.Session.GetString("UserId") != null)
                     {
+                        string userId = Context.Session.GetString("UserId");
                         
                         @if (Context.Session.GetString("RolId").Equals("1"))
                         {
@@ -35,11 +36,17 @@
                             <li class="nav-item">
                                 <a class="nav-link" style="color: #87CEEB" href="#">Mis Postulaciones</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="color: #87CEEB" asp-controller="Valoracion" asp-action="Index">Valoraciones</a>
+                            </li>
                         }
                         else if (Context.Session.GetString("RolId").Equals("0"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link" style="color: #87CEEB" href="#">Publicar Trabajo</a>
+                                <a class="nav-link" style="color: #87CEEB" asp-controller="Publicaciones" asp-action="Index" asp-route-id="@userId">Publicar Trabajo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="color: #87CEEB" asp-controller="ValoracionEmpresas" asp-action="misValoraciones" asp-route-id="@userId">Mis Valoraciones</a>
                             </li>
                         }
                     }
@@ -48,9 +55,7 @@
                     <li class="nav-item">
                         <a class="nav-link" style="color: #87CEEB" asp-controller="Recursos" asp-action="Index">Recursos</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="color: #87CEEB" asp-controller="Valoracion" asp-action="Index">Valoraciones</a>
-                    </li>
+                   
                 </ul>
                 <ul class="navbar-nav mx-3">
                     @if (Context.Session.GetString("UserId") == null)

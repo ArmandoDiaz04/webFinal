@@ -1,0 +1,57 @@
+﻿@model IEnumerable<webFinal.Models.ValoracionEmpresa>
+
+@{
+    ViewData["Title"] = "valoracion";
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Comentario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Calificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaValoracion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empresa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usuario)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comentario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Calificacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaValoracion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Empresa.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usuario.Apellido)
+                </td>
+                <td>
+                    @*<a asp-action="Edit" asp-route-id="@item.IdValoracion">Edit</a> |*@
+                    <a asp-action="Details" asp-route-id="@item.IdValoracion">Details</a> |
+                   @* <a asp-action="Delete" asp-route-id="@item.IdValoracion">Delete</a>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
