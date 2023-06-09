@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using webFinal.Models;
 
@@ -15,25 +16,40 @@ namespace webFinal.Controllers
         }
         public IActionResult Index(string empresa)
         {
-
-            var empresasConValoraciones = _empleosDBContext.ValoracionesEmpresas
+            List<ValoracionEmpresa> valoraciones = _empleosDBContext.ValoracionesEmpresas
+     .Join(_empleosDBContext.Usuarios,
+         valoracion => valoracion.IdUsuario,
+         usuario => usuario.IdUsuario,
+         (valoracion, usuario) => new
+         {
+             Valoracion = valoracion,
+             Usuario = usuario
+         })
      .Join(_empleosDBContext.Empresas,
-         valoracion => valoracion.IdEmpresa,
+         vu => vu.Valoracion.IdEmpresa,
          empresa => empresa.IdEmpresa,
-         (valoracion, empresa) => new { Valoracion = valoracion, Empresa = empresa })
-     .Select(x => new { NombreEmpresa = x.Empresa.Nombre,
-     valor = new valor
-     {
-        Comentario = valor.Comentario,
-        
-     }
-     })
+         (vu, empresa) => new ValoracionEmpresa
+         {
+             IdValoracion = vu.Valoracion.IdValoracion,
+             IdEmpresa = vu.Valoracion.IdEmpresa,
+             IdUsuario = vu.Valoracion.IdUsuario,
+             Comentario = vu.Valoracion.Comentario,
+             Calificacion = vu.Valoracion.Calificacion,
+             FechaValoracion = vu.Valoracion.FechaValoracion,
+             Empresa = empresa,
+             Usuario = vu.Usuario
+         })
+     .Where(v => string.IsNullOrEmpty(empresa) || v.Empresa.Nombre == empresa)
      .ToList();
 
+            listados();
 
+          
 
-            return View(empresasConValoraciones);
+            return View(valoraciones);
+
         }
+
 
         public IActionResult TraerUsuario(string usuario)
         {
