@@ -1,0 +1,31 @@
+﻿@model List<webFinal.Models.Postulacion>
+
+@{
+    ViewData["Title"] = "Postulaciones";
+}
+
+<h1>Lista de Postulaciones</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Usuario</th>
+            <th>Empresa</th>
+            <th>Publicación</th>
+            <th>Fecha de Postulación</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var postulacion in Model)
+        {
+            <tr>
+                <td>@postulacion.IdPostulacion</td>
+                <td>@(postulacion.Usuario?.Nombre)</td>
+                <td>@(postulacion.Empresa?.Nombre)</td>
+                <td>@(postulacion.Publicacion?.Titulo)</td>
+                <td>@postulacion.FechaPostulacion.ToString("dd/MM/yyyy HH:mm:ss")</td>
+            </tr>
+        }
+    </tbody>
+</table>

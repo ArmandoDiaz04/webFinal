@@ -12,24 +12,12 @@
             {
                 _dbContext = dbContext;
             }
-
-            public IActionResult Index()
-            {
-                return View();
-            }
-
-        public IActionResult Consultar()
+        public IActionResult Index()
         {
-            // Obtener todas las postulaciones y cargar los datos relacionados
-            var postulaciones = _dbContext.postulaciones
-                .Include(p => p.Usuario)
-                .Include(p => p.Empresa)
-                .Include(p => p.Publicacion)
-                .ToList();
-
-            // Pasar las postulaciones a la vista
-            return View(postulaciones);
+         
+            return View();
         }
+
 
         [HttpPost]
             public IActionResult Crear(int IdPublicacion, int IdEmpresa, int IdUsuario)
