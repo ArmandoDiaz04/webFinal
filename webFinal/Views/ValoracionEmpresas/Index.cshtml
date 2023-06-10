@@ -9,11 +9,11 @@
         <!-- Filtros -->
         <div class="col-3 pt-4" style="background-color: rgba(217, 217, 217, 0.3);">
             <h5 class="text-center">Filtros</h5>
-            <form method="post" asp-action="Create">
+            <form method="post">
                 <div class="form-group mb-4">
                     <div class="col">
                         <div class="col">
-                            @Html.DropDownList("selectedEmpresaId", ViewData["listaEmpresa"] as List<SelectListItem>, "Seleccione una empresa", new { @class = "form-control" })
+                            @Html.DropDownList("selectedEmpresaId", ViewData["listaEmpresa"] as List<SelectListItem>, "Seleccione una empresa", new { @class = "form-control empresa-dropdown" })
 
                         </div>
                     </div>
@@ -25,7 +25,8 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="col-sm-4">
-                            <a href="@Url.Action("Create", new { idEmpresa = Model[0].IdEmpresa })" class="btn btn-primary">Crear</a>
+                            <a href="@Url.Action("Create", new { idEmpresa = ViewBag.selectedEmpresaId })" class="btn btn-primary create-link">Crear</a>
+
                         </div>
                     </div>
                 </div>
@@ -41,17 +42,16 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <a href="@Url.Action("Details", new { id = valoracion.IdValoracion })" class="mr-2">
-                                        @(valoracion.Empresa.Nombre ?? "Nombre de empresa desconocido")
-                                    </a>
+                                    @(valoracion.Empresa.Nombre ?? "Nombre de empresa desconocido")
                                 </h5>
-                                <p class="card-text overflow-visible d-inline-block" style="height: 5rem">@valoracion.Comentario</p>
-                                <p class="card-text">@valoracion.Empresa.Nombre</p>
-                                <p class="card-text">@valoracion.Empresa.IdEmpresa</p> <!-- Agrega el ID correspondiente -->
+                                <p class="card-text overflow-visible d-inline-block" style="height: 5rem">Comentario: @valoracion.Comentario</p>
+                              
+                                <p class="card-text">Calificación: @valoracion.Calificacion</p>
                             </div>
                         </div>
                     </div>
                 }
+
             </div>
         </div>
     </div>
@@ -59,4 +59,15 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    
+    <script>
+        $(document).ready(function () {
+            $('.empresa-dropdown').change(function () {
+                var selectedId = $(this).val();
+                var createUrl = '@Url.Action("Create", "ValoracionEmpresas", new { idEmpresa = "__id__" })';
+                createUrl = createUrl.replace('__id__', selectedId);
+                $('.create-link').attr('href', createUrl);
+            });
+        });
+    </script>
 }

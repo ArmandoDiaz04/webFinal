@@ -4,20 +4,27 @@ using System.ComponentModel.DataAnnotations;
 
 namespace webFinal.Models
 {
+    [Table("ValoracionesEmpresas")]
     public class ValoracionEmpresa
     {
         [Key]
+        [Column("IdValoracion")]
         public int IdValoracion { get; set; }
 
-        public int IdEmpresa { get; set; }
-        public int IdUsuario { get; set; }
+        [Column("IdEmpresa")]
+        public int? IdEmpresa { get; set; }
 
-        [Column(TypeName = "ntext")]
+        [Column("IdUsuario")]
+        public int? IdUsuario { get; set; }
+
+        [Column("Comentario")]
         public string Comentario { get; set; }
 
-        public int Calificacion { get; set; }
+        [Column("Calificacion")]
+        public int? Calificacion { get; set; }
 
-        public DateTime FechaValoracion { get; set; }
+        [Column("FechaValoracion")]
+        public DateTime? FechaValoracion { get; set; }
 
         [ForeignKey("IdEmpresa")]
         public Empresa Empresa { get; set; }

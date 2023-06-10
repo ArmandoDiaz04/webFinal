@@ -62,10 +62,16 @@ namespace webFinal.Controllers
 
         // GET: ValoracionEmpresas/Create
         [HttpGet]
-        public ActionResult Create(int idEmpresa)
+        public async Task<ActionResult> Create(int? idEmpresa)
         {
+            if (idEmpresa == null)
+            {
+                return NotFound(); // Manejar el caso en el que el ID de empresa sea nulo
+            }
+
             // Obtener los datos de la empresa correspondiente al ID
-            Empresa empresa = _context.Empresas.FirstOrDefault(e => e.IdEmpresa == idEmpresa);
+            Empresa empresa = await _context.Empresas.SingleOrDefaultAsync(e => e.IdEmpresa == idEmpresa);
+
 
             if (empresa == null)
             {
@@ -85,24 +91,29 @@ namespace webFinal.Controllers
 
 
 
+
+
         // POST: ValoracionEmpresas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-    
         [ValidateAntiForgeryToken]
         [HttpPost]
         public async Task<IActionResult> Guardar(ValoracionEmpresa valoracionEmpresa)
         {
-            if (ModelState.IsValid)
-            {
+            Empresa empresa = _context.Empresas.FirstOrDefault(e => e.IdEmpresa == valoracionEmpresa.IdEmpresa);
+            valoracionEmpresa.Empresa = empresa;
+            Usuario usuario = _context.Usuarios.FirstOrDefault(e => e.IdUsuario == valoracionEmpresa.IdUsuario);
+            valoracionEmpresa.Usuario = usuario;
+            valoracionEmpresa.FechaValoracion = DateTime.Now;
+            if (!ModelState.IsValid)
+            {              
+               
                 _context.Add(valoracionEmpresa);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "ValoracionEmpresas");
+                return RedirectToAction(nameof(Index));
             }
-
             return View(valoracionEmpresa);
         }
-
 
 
         // GET: ValoracionEmpresas/Edit/5
