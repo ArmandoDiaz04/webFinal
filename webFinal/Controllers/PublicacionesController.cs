@@ -51,22 +51,36 @@ namespace webFinal.Controllers
         // GET: Publicaciones/Create
         public IActionResult Create()
         {
-            ViewData["IdEmpresa"] = new SelectList(_context.Empresas, "IdEmpresa", "Email");
+            string userId = HttpContext.Session.GetString("UserId");
+
+            // Obtener el usuario de la base de datos utilizando el userId
+            var user = _context.Empresas.FirstOrDefault(u => u.IdEmpresa.ToString().Equals(userId));
+
+            string userName = user != null ? user.Nombre : string.Empty;
+
+            ViewBag.UserId = userId;
+            ViewBag.UserName = userName;
+
             return View();
         }
+
+
 
         // POST: Publicaciones/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdPublicacion,IdEmpresa,Titulo,Descripcion,FechaPublicacion,Salario,Experiencia,tipo_contrato,Localizacion")] Publicacion publicacion)
+        public async Task<IActionResult> Create([Bind("IdPublicacion,IdEmpresa,Titulo,Descripcion,Salario,Experiencia,tipo_contrato,Localizacion")] Publicacion publicacion)
         {
-            if (ModelState.IsValid)
+            publicacion.FechaPublicacion = DateTime.Now;
+            if (!ModelState.IsValid)
             {
                 _context.Add(publicacion);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                string userId = HttpContext.Session.GetString("UserId");
+                return RedirectToAction("Index", new { id = userId });
+
             }
             ViewData["IdEmpresa"] = new SelectList(_context.Empresas, "IdEmpresa", "Email", publicacion.IdEmpresa);
             return View(publicacion);

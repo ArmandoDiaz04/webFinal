@@ -34,7 +34,7 @@
 
             @if (Context.Session.GetString("RolId").Equals("1"))
             {
-                <form id="postulacionForm" asp-area="" asp-controller="Postulacion" asp-action="Crear" data-modal="#modalResultado">
+                <form id="postulacionForm" asp-area="" asp-controller="Postulacions" asp-action="Crear" data-modal="#modalResultado">
                     <input type="hidden" name="IdPublicacion" value="@Model.IdPublicacion" />
                     <input type="hidden" name="IdEmpresa" value="@Model.IdEmpresa" />
                     <input type="hidden" name="IdUsuario" value="@userId" />

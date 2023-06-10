@@ -106,8 +106,8 @@ namespace webFinal.Controllers
             valoracionEmpresa.Usuario = usuario;
             valoracionEmpresa.FechaValoracion = DateTime.Now;
             if (!ModelState.IsValid)
-            {              
-               
+            {
+
                 _context.Add(valoracionEmpresa);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

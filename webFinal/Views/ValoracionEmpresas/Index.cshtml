@@ -38,18 +38,18 @@
             <div class="row">
                 @foreach (var valoracion in Model)
                 {
-                    <div class="col-md-4 mb-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
                                     @(valoracion.Empresa.Nombre ?? "Nombre de empresa desconocido")
-                                </h5>
-                                <p class="card-text overflow-visible d-inline-block" style="height: 5rem">Comentario: @valoracion.Comentario</p>
-                              
-                                <p class="card-text">Calificación: @valoracion.Calificacion</p>
+                                    </h5>
+                                    <p class="card-text overflow-visible d-inline-block" style="height: 5rem">Comentario: @valoracion.Comentario</p>
+
+                                    <p class="card-text">Calificación: @valoracion.Calificacion</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
                 }
 
             </div>
@@ -58,16 +58,16 @@
 </div>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-    
-    <script>
-        $(document).ready(function () {
-            $('.empresa-dropdown').change(function () {
-                var selectedId = $(this).val();
-                var createUrl = '@Url.Action("Create", "ValoracionEmpresas", new { idEmpresa = "__id__" })';
-                createUrl = createUrl.replace('__id__', selectedId);
-                $('.create-link').attr('href', createUrl);
+        <partial name="_ValidationScriptsPartial" />
+
+        <script>
+            $(document).ready(function () {
+                $('.empresa-dropdown').change(function () {
+                    var selectedId = $(this).val();
+                    var createUrl = '@Url.Action("Create", "ValoracionEmpresas", new { idEmpresa = "__id__" })';
+                    createUrl = createUrl.replace('__id__', selectedId);
+                    $('.create-link').attr('href', createUrl);
+                });
             });
-        });
-    </script>
+        </script>
 }
