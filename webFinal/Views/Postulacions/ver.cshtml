@@ -1,0 +1,49 @@
+﻿@model IEnumerable<webFinal.Models.Postulacion>
+
+@{
+    ViewData["Title"] = "ver";
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaPostulacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empresa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Publicacion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaPostulacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usuario.Nombre)
+                    @Html.DisplayFor(modelItem => item.Usuario.Apellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Empresa.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Publicacion.Titulo)
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.IdPostulacion" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

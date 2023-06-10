@@ -8,15 +8,15 @@
 
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" method="post" asp-route-id="@Model.IdUsuario">
+                        <div class="form-group">
+            <label asp-for="IdUsuario" class="control-label"></label>
+            <label asp-for="IdUsuario" class="form-control" asp-items="ViewBag.IdUsuario"></label>
+            </div>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="IdEmpresa" class="control-label"></label>
-                <select asp-for="IdEmpresa" class ="form-control" asp-items="ViewBag.IdEmpresa"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="IdUsuario" class="control-label"></label>
-                <select asp-for="IdUsuario" class ="form-control" asp-items="ViewBag.IdUsuario"></select>
+                <select asp-for="IdEmpresa" class="form-control" asp-items="ViewBag.IdEmpresa"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Comentario" class="control-label"></label>
@@ -34,9 +34,10 @@
                 <span asp-validation-for="FechaValoracion" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Crear" class="btn btn-primary" />
+                <button type="submit" asp-route-action="Create" class="btn btn-primary">Crear</button>
             </div>
         </form>
+
     </div>
 </div>
 

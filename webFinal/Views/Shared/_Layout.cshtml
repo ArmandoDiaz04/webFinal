@@ -34,7 +34,7 @@
                                 <a class="nav-link" style="color: #87CEEB"   asp-controller="Home" asp-action="Index" >Buscar Trabajo</a>
                             </li> 
                             <li class="nav-item">
-                                <a class="nav-link" style="color: #87CEEB" href="#">Mis Postulaciones</a>
+                                <a class="nav-link" style="color: #87CEEB" asp-controller="Postulacions" asp-action="mispostulaciones" asp-route-id="@userId">Mis Postulaciones</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" style="color: #87CEEB" asp-controller="Valoracion" asp-action="Index">Valoraciones</a>
@@ -47,6 +47,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" style="color: #87CEEB" asp-controller="ValoracionEmpresas" asp-action="misValoraciones" asp-route-id="@userId">Mis Valoraciones</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="color: #87CEEB" asp-controller="Postulacions" asp-action="ver" asp-route-id="@userId">Postulaciones</a>
                             </li>
                         }
                     }

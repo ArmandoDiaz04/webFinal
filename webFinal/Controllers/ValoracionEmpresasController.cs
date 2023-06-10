@@ -58,12 +58,14 @@ namespace webFinal.Controllers
         }
 
         // GET: ValoracionEmpresas/Create
-        public IActionResult Create()
+        public IActionResult Create(int? id)
         {
+            var IdUsuario = id;
             ViewData["IdEmpresa"] = new SelectList(_context.Empresas, "IdEmpresa", "Nombre");
-            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Nombre");
+            ViewData["IdUsuario"] = new SelectList(_context.Usuarios.Select(u => new { u.IdUsuario, u.Nombre }), "IdUsuario", "Nombre");
             return View();
         }
+
 
         // POST: ValoracionEmpresas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
